@@ -234,11 +234,11 @@ body {
   color: var(--text-color);
   text-align: center;
   padding: 20px 0;
-  font-size: 1.3rem;
+  font-size: 0.95rem;
 }
 .footer-text {
   margin: 1;
-  font-size: 2rem;
+  font-size: 0.995rem;
 }
 .footer-content {
   display: flex;
