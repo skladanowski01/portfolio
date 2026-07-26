@@ -39,11 +39,22 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
   anchor.addEventListener('click', (e) => {
     e.preventDefault();
     const targetId = anchor.getAttribute('href');
+    
     if (targetId && targetId !== '#') {
-      lenis.scrollTo(targetId, {
-        offset: 0,
-        duration: 1.5,
-      });
+      if (isMenuOpen) {
+        closeMenu();
+        setTimeout(() => {
+          lenis.scrollTo(targetId, {
+            offset: 0,
+            duration: 1.5,
+          });
+        }, 300);
+      } else {
+        lenis.scrollTo(targetId, {
+          offset: 0,
+          duration: 1.5,
+        });
+      }
     }
   });
 });
@@ -128,13 +139,13 @@ menuTl
     duration: 0.75,
   })
   .to(".burger-line:first-child", {
-    y: 4, // wyśrodkowanie przy gap: 6px
+    y: 4,
     rotation: 45,
     duration: 0.25,
     transformOrigin: "center",
   }, 0)
   .to(".burger-line:last-child", {
-    y: -4, // wyśrodkowanie przy gap: 6px
+    y: -4,
     rotation: -45,
     duration: 0.25,
     transformOrigin: "center",
@@ -152,14 +163,14 @@ menuTl
 function openMenu() {
   if (isMenuOpen) return;
   isMenuOpen = true;
-  lenis.stop(); // Blokujemy przewijanie w tle
+  lenis.stop();
   menuTl.play();
 }
 
 function closeMenu() {
   if (!isMenuOpen) return;
   isMenuOpen = false;
-  lenis.start(); // Przywracamy przewijanie
+  lenis.start();
   menuTl.reverse();
 }
 
@@ -248,21 +259,20 @@ const photos = document.querySelectorAll(".photos img");
 
 if (photos.length > 0) {
   gsap.fromTo(photos, {
-    autoAlpha: 0, // Przezroczyste
-    y: 50,         // Przesunięte w dół o 50px
-    scale: 0.9,    // Lekko pomniejszone
+    autoAlpha: 0,
+    y: 50,
+    scale: 0.9,
   }, {
-    autoAlpha: 1,  // Widoczne
-    y: 0,          // Wróć na pozycję
-    scale: 1,      // Wróć do pełnego rozmiaru
+    autoAlpha: 1,
+    y: 0,
+    scale: 1,
     duration: 0.8,
     ease: "power3.out",
-    stagger: 0.15, // Opóźnienie między kolejnymi zdjęciami (0.15s)
+    stagger: 0.15,
     scrollTrigger: {
-      trigger: ".photos", // Animacja startuje, gdy kontener zdjęć wejdzie na ekran
-      start: "top 80%",   // Start, gdy góra kontenera jest na 80% wysokości ekranu
-      toggleActions: "play none none reverse", // Odtwórz przy scrollowaniu w dół, cofnij przy w górę
-      // markers: true, // Odkomentuj, aby zobaczyć linie pomocnicze start/end
+      trigger: ".photos",
+      start: "top 80%",
+      toggleActions: "play none none reverse",
     },
   });
 }
