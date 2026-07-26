@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GSAP SPA Pawel Skladanowski Portfolio</title>  
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+  <header class="site-header" data-header>
+    <div class="header-container">
+      
+      <!-- LOGO -->
+      <a href="#" class="logo" data-logo>
+        <span class="logo-text">Pablo</span>
+      </a>
+
+      <!-- NAV OVERLAY -->
+      <nav class="nav" data-nav>
+        <div class="nav-wrapper">
+          <ul class="nav-list">
+            <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="#design" class="nav-link">Design</a></li>
+            <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- CTA & HAMBURGER -->
+      <div class="header-actions">
+        <a href="#contact" class="btn-cta">Contact</a>
+        <button class="burger-btn" aria-label="Open menu" data-burger>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <h1 class="hero-title">Junior Frontend Developer</h1>
+      <h2 class="hero-subtitle">
+        <span class="hero-subtitle-line">GSAP</span>
+        <span class="hero-subtitle-line">SPA</span>
+        <span class="hero-subtitle-line">Node.js</span>
+        <span class="hero-subtitle-line">CSS</span>
+        <span class="hero-subtitle-line">JavaScript</span>
+        <span class="hero-subtitle-line">OpenAI</span>
+      </h2> 
+    </section>
+    
+    <section class="content-block">
+      <p>Hi! I am Pablo :></p>
+    </section>
+    
+    <section class="content-block">
+      <p>Beginner UI/UX Designer & Coder</p>
+    </section>
+
+    <!-- PORTFOLIO SECTION -->
+    <section class="portfolio-section">
+      <h3 class="portfolio">Interactive Web Experiences</h3>
+      <div class="text">
+        <h4 class="textAboutMe">Few months of coding animations.</h4>
+      </div>
+      <div class="photos">
+        
+        <img src="assets/Projects/FirstProject.jpg" alt="Photo 2">
+        
+
+        <img src="assets/DAGART/1.webp" alt="Photo 1">
+        
+      </div> 
+      <p class="imgDescriptions">Interactive Animation Project</p>
+      <p class="imgDescriptions">DAGART Project<br>In Progress</p>
+    </section>
+
+    <!-- ABOUT ME SECTION -->
+    <section class="about-section" id="about">
+      <h3 class="aboutMe">My journey</h3>
+      <p class="photosDescription">I love creating - spent 2 years as a Graphic Designer. </p>   
+      <div class="photos">        
+        <img src="assets/Me/IMG_20260724_095325_edit_84976204148884.jpg" alt="Photo of myself">  
+        <p class="photosDescription">Now I am a Junior Frontend Developer. I am passionate about creating interactive web experiences and constantly learning new technologies to enhance my skills.</p>      
+      </div>  
+       
+      
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <section class="footer-content">
+      <p class="footer-text">Contact Me: <a class="footer-text-connect" href="mailto:brandev2023@gmail.com">brandev2023@gmail.com</a></p>
+    </section>
+    <p>&copy; 2026 Pablo Skladanowski. All rights reserved.</p>
+  </footer>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
