@@ -245,7 +245,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 .footer-text-connect {
   color: var(--accent-color);
