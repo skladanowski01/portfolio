@@ -260,7 +260,7 @@ const photos = document.querySelectorAll(".photos img");
 if (photos.length > 0) {
   gsap.fromTo(photos, {
     autoAlpha: 0,
-    y: 50,
+    y: 70,
     scale: 0.9,
   }, {
     autoAlpha: 1,
