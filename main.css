@@ -185,36 +185,44 @@ body {
   max-width: 1200px;
 }
 
+/* Styl dla kontenera/linku owijającego zdjęcie */
+.photo-link {
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 12px;
+  text-decoration: none;
+}
+
 .photos img {
   width: 100%;
   max-width: 350px;
   height: 250px;
   object-fit: cover;
   border-radius: 12px;
+  opacity: 0; /* Zdjęcia domyślnie ukryte, GSAP je pokaże */
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* Efekt powiększenia po najechaniu na całą klasę photos lub jej elementy */
+.photos:hover img,
+.photos img:hover,
+.photo-link:hover img {
+  transform: scale(1.08);
+}
+
 .textAboutMe,
-.imgDescriptions{
+.imgDescriptions {
   font-size: clamp(1rem, 2vw, 1.5rem);
   text-align: center;
   font-weight: 600;
   margin: 0 auto;
 }
+
 .photosDescription {
   font-size: clamp(1rem, 2vw, 1.5rem);
   text-align: center;
   font-weight: 600;
   margin: 0 auto;
-}
-.photos img {
-  /* ... Twoje obecne style ... */
-  width: 100%;
-  max-width: 350px;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 12px;
-  
-  /* DODAJ TĘ LINIĘ: */
-  opacity: 0; /* Zdjęcia domyślnie ukryte, GSAP je pokaże */
 }
 
 /* --- CONTENT BLOCKS --- */
@@ -236,10 +244,12 @@ body {
   padding: 20px 0;
   font-size: 0.95rem;
 }
+
 .footer-text {
   margin: 1;
   font-size: 0.875rem;
 }
+
 .footer-content {
   display: flex;
   flex-direction: column;
@@ -247,10 +257,12 @@ body {
   gap: 1rem;
   margin-bottom: 2rem;
 }
+
 .footer-text-connect {
   color: var(--accent-color);
   text-decoration: none;
 }
+
 html.lenis, html.lenis body {
   height: auto;
 }

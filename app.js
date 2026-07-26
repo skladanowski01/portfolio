@@ -41,6 +41,14 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     const targetId = anchor.getAttribute('href');
     
     if (targetId && targetId !== '#') {
+      // Specjalna obsługa dla logo prowadzącego na samą górę strony
+      if (targetId === '#header') {
+        if (isMenuOpen) closeMenu();
+        lenis.scrollTo(0, { duration: 1.5 });
+        return;
+      }
+
+      // Obsługa pozostałych linków z uwzględnieniem otwartego menu
       if (isMenuOpen) {
         closeMenu();
         setTimeout(() => {
@@ -260,7 +268,7 @@ const photos = document.querySelectorAll(".photos img");
 if (photos.length > 0) {
   gsap.fromTo(photos, {
     autoAlpha: 0,
-    y: 70,
+    y: 50,
     scale: 0.9,
   }, {
     autoAlpha: 1,
