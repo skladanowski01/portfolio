@@ -157,8 +157,7 @@ body {
 }
 
 /* --- GENERAL SECTIONS --- */
-.portfolio-section,
-.about-section {
+.portfolio-section {
   min-height: 100vh;
   padding: 80px 24px;
   display: flex;
@@ -167,7 +166,14 @@ body {
   justify-content: center;
   gap: 32px;
 }
-
+.about-section{  
+  padding: 80px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
 .portfolio,
 .aboutMe,
 .photosDescription {
@@ -223,6 +229,37 @@ body {
   text-align: center;
   font-weight: 600;
   margin: 0 auto;
+}
+/* --- OPISY W PORTFOLIO I BLINKING --- */
+.imgDescriptions {
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  text-align: center;
+  font-weight: 600;
+  margin: 0 auto;
+}
+
+/* Pierwszy opis ukryty przed animacją GSAP */
+.portfolio-section .imgDescriptions:nth-of-type(1) {
+  opacity: 0;
+}
+
+/* Drugi opis: stała bazowa przezroczystość 0.7 */
+.portfolio-section .imgDescriptions:nth-of-type(2) {
+  opacity: 0.7;
+}
+
+/* Klasa aktywująca mruganie po dojściu scrolla */
+.portfolio-section .imgDescriptions:nth-of-type(2).is-blinking {
+  animation: pulseBlink 3.4s ease-in-out infinite;
+}
+
+@keyframes pulseBlink {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 /* --- CONTENT BLOCKS --- */

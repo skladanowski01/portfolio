@@ -1,6 +1,6 @@
 gsap.registerPlugin(ScrollTrigger);
 
-// --- ELEMNETY DOM ---
+// --- ELEMENTY DOM ---
 const nav = document.querySelector("[data-nav]");
 const burger = document.querySelector("[data-burger]");
 const logo = document.querySelector("[data-logo]");
@@ -24,7 +24,6 @@ const lenis = new Lenis({
   smoothWheel: true,
 });
 
-// Połączenie Lenisa ze ScrollTriggerem GSAP
 lenis.on('scroll', ScrollTrigger.update);
 
 gsap.ticker.add((time) => {
@@ -41,14 +40,12 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     const targetId = anchor.getAttribute('href');
     
     if (targetId && targetId !== '#') {
-      // Specjalna obsługa dla logo prowadzącego na samą górę strony
       if (targetId === '#header') {
         if (isMenuOpen) closeMenu();
         lenis.scrollTo(0, { duration: 1.5 });
         return;
       }
 
-      // Obsługa pozostałych linków z uwzględnieniem otwartego menu
       if (isMenuOpen) {
         closeMenu();
         setTimeout(() => {
@@ -68,7 +65,7 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 });
 
 
-// --- 3. STAN BAZOWY DLA ELEMNETÓW (GSAP SET) ---
+// --- 3. STAN BAZOWY DLA ELEMENTÓW (GSAP SET) ---
 gsap.set(nav, {
   clipPath: "circle(0% at calc(100% - 40px) 40px)",
   pointerEvents: "none",
@@ -182,7 +179,6 @@ function closeMenu() {
   menuTl.reverse();
 }
 
-// Eventy Menu
 burger.addEventListener("click", () => {
   if (isMenuOpen) {
     closeMenu();
@@ -199,7 +195,6 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeMenu();
 });
 
-// Hover effect na linkach w menu
 navLinks.forEach((link) => {
   link.addEventListener("mouseenter", () => {
     gsap.to(link, {
@@ -219,9 +214,15 @@ navLinks.forEach((link) => {
 });
 
 
-// --- 6. SCROLLTRIGGER: REVEAL SEKCJI I PARALLAX HERO ---
+// --- 6. SCROLLTRIGGER: REVEAL SEKCJI I ANIMACJE SPECJALNE ---
 sections.forEach((section) => {
   if (section.classList.contains("hero")) return;
+
+  // Specjalne, późniejsze wywołanie dla sekcji My Journey (id="about")
+  let startTrigger = "top 80%";
+  if (section.id === "about") {
+    startTrigger = "top 55%"; // Pojawi się znacznie później / głębiej podczas scrollowania
+  }
 
   gsap.fromTo(section, {
     autoAlpha: 0,
@@ -233,7 +234,7 @@ sections.forEach((section) => {
     ease: "power3.out",
     scrollTrigger: {
       trigger: section,
-      start: "top 80%",
+      start: startTrigger,
       toggleActions: "play none none reverse",
     },
   });
@@ -282,5 +283,41 @@ if (photos.length > 0) {
       start: "top 80%",
       toggleActions: "play none none reverse",
     },
+  });
+}
+
+// --- NOWOŚĆ: Animacyjne opisy w portfolio ---
+
+// 1. "Interactive Animation Project" wsuwający się z góry
+const firstImgDesc = document.querySelector(".portfolio-section .imgDescriptions:nth-of-type(1)");
+if (firstImgDesc) {
+  gsap.fromTo(firstImgDesc, {
+    autoAlpha: 0,
+    y: -30,
+  }, {
+    autoAlpha: 1,
+    y: 0,
+    duration: 0.8,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: firstImgDesc,
+      start: "top 85%",
+      toggleActions: "play none none reverse",
+    }
+  });
+}
+
+// 2. "DAGART Project In Process" z efektem mrugania od momentu dojścia scrolla
+const secondImgDesc = document.querySelector(".portfolio-section .imgDescriptions:nth-of-type(2)");
+if (secondImgDesc) {
+  ScrollTrigger.create({
+    trigger: secondImgDesc,
+    start: "top 85%",
+    onEnter: () => {
+      secondImgDesc.classList.add("is-blinking");
+    },
+    onLeaveBack: () => {
+      secondImgDesc.classList.remove("is-blinking");
+    }
   });
 }
